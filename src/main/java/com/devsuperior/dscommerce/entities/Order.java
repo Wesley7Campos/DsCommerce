@@ -3,10 +3,7 @@ package com.devsuperior.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name ="tb_order")
@@ -86,5 +83,16 @@ public class Order {
         return items.stream().map(x -> x.getProduct()).toList();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Order order = (Order) o;
+        return Objects.equals(Id, order.Id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(Id);
+    }
 }
